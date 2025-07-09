@@ -9,3 +9,4 @@ Route.post("/objetivos/create", "ObjetivosController.criar");
 Route.delete("/objetivos/:id", "ObjetivosController.excluir");
 Route.post("/objetivos/adicionar-saldo", "ObjetivosController.adicionarSaldo");
 Route.post("/objetivos/remover-saldo", "ObjetivosController.removerSaldo");
+Route.get("/info", "UsersController.getInfoUser");

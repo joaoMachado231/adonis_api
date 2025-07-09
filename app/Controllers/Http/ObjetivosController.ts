@@ -22,6 +22,14 @@ export default class ObjetivosController {
 
   public async excluir({ params, response }: HttpContextContract) {
     const objetivo = await Objetivo.findOrFail(params.id);
+
+    const conta = await Conta.query().where("user_id", objetivo.userId).first();
+
+    if (conta) {
+      conta.saldo = Number(conta.saldo) + Number(objetivo.valorAtual);
+      await conta.save();
+    }
+
     await objetivo.delete();
 
     return response.ok({ message: "Objetivo excluído" });
